@@ -11,7 +11,7 @@ function useContagem(minutos: number) {
 }
 
 export default function PaginaVendas() {
-  const checkoutUrl = '#comprar';
+  const checkoutUrl = 'https://pay.cakto.com.br/3eozhwb';
   const { mm, ss } = useContagem(15);
 
   const temas = [
