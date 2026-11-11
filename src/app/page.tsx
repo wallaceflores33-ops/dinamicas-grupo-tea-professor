@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function useContagem(minutos: number) {
   const [seg, setSeg] = useState(minutos * 60);
@@ -13,6 +13,20 @@ function useContagem(minutos: number) {
 export default function PaginaVendas() {
   const checkoutUrl = 'https://pay.cakto.com.br/3eozhwb';
   const { mm, ss } = useContagem(15);
+  const carRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = carRef.current;
+    if (!el) return;
+    let dir = 1;
+    const tick = setInterval(() => {
+      const max = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= max - 2) dir = -1;
+      if (el.scrollLeft <= 2) dir = 1;
+      el.scrollBy({ left: dir * 1.2, behavior: 'instant' });
+    }, 20);
+    return () => clearInterval(tick);
+  }, []);
 
   const temas = [
     { num: '01', icon: '🤝', nome: 'Interação entre Alunos com e sem TEA', desc: 'Dinâmicas que criam pontes entre os alunos de forma natural, promovendo amizade e cooperação dentro da sala.' },
@@ -61,7 +75,7 @@ export default function PaginaVendas() {
 
         {/* Carrossel de cards */}
         <div style={{maxWidth:860,margin:'0 auto',overflowX:'hidden',paddingBottom:0}}>
-          <div className="car-track" style={{paddingBottom:'1.5rem'}}>
+          <div ref={carRef} className="car-track" style={{paddingBottom:'1.5rem'}}>
             {['01','02','03','04','05'].map(n => (
               <div key={n} className="car-item">
                 <img src={`/card-${n}.png`} alt={`Dinâmica ${n}`} />
