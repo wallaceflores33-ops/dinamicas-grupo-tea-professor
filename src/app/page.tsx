@@ -26,35 +26,48 @@ export default function PaginaVendas() {
     <main>
 
       {/* ══ HERO ══ */}
-      <header style={{background:'#0D4D37',padding:'clamp(2.5rem,6svh,5rem) 1rem 2.5rem',textAlign:'center'}}>
+      <header style={{background:'linear-gradient(160deg,#0A3D2A 0%,#0D4D37 60%,#1B7E5A 100%)',padding:'clamp(2.5rem,6svh,4rem) 1rem 0',textAlign:'center',overflow:'hidden'}}>
         <div style={{maxWidth:680,margin:'0 auto'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,.12)',color:'#A7F3D0',borderRadius:999,padding:'0.4rem 1rem',marginBottom:'1.25rem'}}>
-            <span style={{fontSize:'1rem'}}>📚</span>
-            <span style={{fontSize:'0.78rem',fontWeight:700,letterSpacing:'0.12em',textTransform:'uppercase'}}>Material para Professor · 30 Dinâmicas Prontas</span>
+          <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,.1)',color:'#A7F3D0',borderRadius:999,padding:'0.4rem 1.1rem',marginBottom:'1.25rem',border:'1px solid rgba(255,255,255,.15)'}}>
+            <span>📚</span>
+            <span style={{fontSize:'0.72rem',fontWeight:700,letterSpacing:'0.14em',textTransform:'uppercase'}}>Material para Professor · 30 Dinâmicas Prontas</span>
           </div>
-          <h1 style={{fontFamily:"'Anton','Impact',sans-serif",fontSize:'clamp(2rem,5.5vw,3.6rem)',lineHeight:1.08,margin:'0 0 1.5rem',color:'#fff'}}>
-            30 Dinâmicas Prontas para Incluir o Aluno com TEA na Sua Turma
+
+          <h1 style={{fontFamily:"'Anton','Impact',sans-serif",fontSize:'clamp(2.1rem,6vw,3.8rem)',lineHeight:1.05,margin:'0 0 0.6rem',color:'#fff'}}>
+            30 Dinâmicas Prontas para{' '}
+            <span style={{color:'#34D399'}}>Incluir o Aluno com TEA</span>{' '}
+            na Sua Turma
           </h1>
 
-          {/* Subtítulo como bullets */}
-          <div style={{background:'rgba(255,255,255,.08)',borderRadius:16,padding:'1.25rem 1.5rem',textAlign:'left',maxWidth:480,margin:'0 auto 1.5rem'}}>
-            <p style={{fontSize:'0.72rem',fontWeight:700,letterSpacing:'0.15em',color:'#A7F3D0',textTransform:'uppercase',marginBottom:'0.75rem'}}>
-              Roteiro completo para aplicar ainda esta semana:
-            </p>
+          <p style={{color:'#A7F3D0',fontSize:'clamp(0.95rem,2.5vw,1.1rem)',marginBottom:'1.5rem',lineHeight:1.5}}>
+            Roteiro completo para aplicar ainda esta semana — sem improviso, sem excluir ninguém
+          </p>
+
+          {/* Bullets compactos em linha */}
+          <div style={{display:'flex',flexWrap:'wrap',gap:'0.5rem',justifyContent:'center',marginBottom:'2rem'}}>
             {[
-              'Interação entre alunos com e sem TEA',
-              'Espera de turno de forma guiada',
-              'Reconhecimento de emoções na turma',
-              'Como incluir a criança com TEA nas brincadeiras',
-              'Regras de convivência de forma visual e prática',
-            ].map(b => (
-              <p key={b} style={{color:'#fff',fontSize:'0.9rem',lineHeight:1.6,margin:'0 0 0.3rem',display:'flex',gap:8,alignItems:'flex-start'}}>
-                <span style={{color:'#34D399',marginTop:2,flexShrink:0}}>✔</span> {b}
-              </p>
+              {ico:'🤝','t':'Interação TEA'},
+              {ico:'⏳','t':'Espera de Turno'},
+              {ico:'😊','t':'Emoções'},
+              {ico:'🎮','t':'Brincadeiras'},
+              {ico:'📋','t':'Regras Visuais'},
+            ].map(({ico,t}) => (
+              <span key={t} style={{background:'rgba(255,255,255,.1)',border:'1px solid rgba(255,255,255,.18)',color:'#fff',borderRadius:999,padding:'0.35rem 0.9rem',fontSize:'0.8rem',fontWeight:600,display:'flex',gap:5,alignItems:'center'}}>
+                <span>{ico}</span>{t}
+              </span>
             ))}
           </div>
+        </div>
 
-          <p style={{color:'#A7F3D0',fontSize:'0.88rem',opacity:.8}}>Para: <strong style={{color:'#fff'}}>Professores da Educação Básica</strong></p>
+        {/* Carrossel de cards */}
+        <div style={{maxWidth:860,margin:'0 auto',overflowX:'hidden',paddingBottom:0}}>
+          <div className="car-track" style={{paddingBottom:'1.5rem'}}>
+            {['01','02','03','04','05'].map(n => (
+              <div key={n} className="car-item">
+                <img src={`/card-${n}.png`} alt={`Dinâmica ${n}`} />
+              </div>
+            ))}
+          </div>
         </div>
       </header>
 
@@ -65,9 +78,9 @@ export default function PaginaVendas() {
             O que você recebe
           </p>
           <h2 style={{fontFamily:"'Anton','Impact',sans-serif",fontSize:'clamp(1.5rem,4vw,2.3rem)',textAlign:'center',marginBottom:'0.5rem',color:'#0D4D37'}}>
-            5 temas · 6 dinâmicas cada
+            30 dinâmicas · 5 formatos · 6 por tema
           </h2>
-          <p style={{textAlign:'center',color:'#555',fontSize:'0.9rem',marginBottom:'2rem'}}>= 30 dinâmicas com roteiro completo, prontas para aplicar</p>
+          <p style={{textAlign:'center',color:'#555',fontSize:'0.9rem',marginBottom:'2rem'}}>Roteiro completo com materiais, passo a passo e adaptação TEA em cada uma</p>
           <div style={{display:'grid',gap:'1rem',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))'}}>
             {temas.map(({num,icon,nome,desc}) => (
               <div key={num} className="tema-card">
@@ -163,19 +176,25 @@ export default function PaginaVendas() {
           <p style={{fontSize:'0.85rem',opacity:.75,marginBottom:'2rem'}}>O preço <strong>vai subir</strong> quando o cronômetro zerar</p>
 
           {/* O que inclui */}
-          <div style={{background:'rgba(255,255,255,.06)',borderRadius:16,padding:'1.25rem 1.5rem',marginBottom:'2rem',textAlign:'left'}}>
-            <p style={{fontSize:'0.7rem',fontWeight:700,letterSpacing:'0.15em',color:'#A7F3D0',textTransform:'uppercase',marginBottom:'0.75rem'}}>O que está incluído</p>
-            {[
-              '📂 30 dinâmicas prontas em PDF — acesso imediato',
-              '🤝 6 dinâmicas de Interação entre alunos',
-              '⏳ 6 dinâmicas de Espera de Turno',
-              '😊 6 dinâmicas de Reconhecimento de Emoções',
-              '🎮 6 dinâmicas de Inclusão nas Brincadeiras',
-              '📋 6 dinâmicas de Regras de Convivência',
-              '📝 Roteiro completo + materiais + dicas de adaptação em cada dinâmica',
-            ].map(t => (
-              <p key={t} style={{fontSize:'0.88rem',lineHeight:1.6,margin:'0 0 0.3rem',opacity:.9}}>{t}</p>
-            ))}
+          <div style={{marginBottom:'2rem',textAlign:'left'}}>
+            <p style={{fontSize:'0.72rem',fontWeight:700,letterSpacing:'0.15em',color:'#A7F3D0',textTransform:'uppercase',marginBottom:'1rem',textAlign:'center'}}>✅ O que você recebe</p>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.6rem'}}>
+              {[
+                {ico:'📂',t:'30 dinâmicas completas em PDF'},
+                {ico:'🎯',t:'6 variações por tema'},
+                {ico:'🤝',t:'Interação TEA na turma'},
+                {ico:'⏳',t:'Espera de turno guiada'},
+                {ico:'😊',t:'Reconhecimento de emoções'},
+                {ico:'🎮',t:'Inclusão nas brincadeiras'},
+                {ico:'📋',t:'Regras visuais práticas'},
+                {ico:'📝',t:'Adaptação TEA em cada uma'},
+              ].map(({ico,t}) => (
+                <div key={t} style={{display:'flex',gap:8,alignItems:'center',background:'rgba(255,255,255,.08)',borderRadius:10,padding:'0.7rem 0.9rem',fontSize:'0.85rem',fontWeight:500}}>
+                  <span style={{fontSize:'1.1rem',flexShrink:0}}>{ico}</span>
+                  <span style={{lineHeight:1.3}}>{t}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Barra */}

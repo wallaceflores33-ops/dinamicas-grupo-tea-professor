@@ -33,3 +33,17 @@ h1,h2,h3,.font-anton { font-family: 'Anton','Impact',sans-serif; letter-spacing:
 .tema-num  { font-family: 'Anton','Impact',sans-serif; font-size: .7rem; letter-spacing: .12em; color: var(--cor-prim); text-transform: uppercase; }
 
 .bg-cream2 { background: var(--bg-cream2); }
+
+/* Carrossel de cards */
+.car-track {
+  display: flex; gap: 16px; overflow-x: auto; padding: 0 1rem;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.car-track::-webkit-scrollbar { display: none; }
+.car-item {
+  flex: 0 0 220px; scroll-snap-align: center; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.35); transition: transform .2s;
+}
+.car-item:hover { transform: scale(1.03); }
+.car-item img { display: block; width: 100%; height: auto; }
