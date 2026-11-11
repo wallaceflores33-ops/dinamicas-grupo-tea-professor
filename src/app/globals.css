@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --cor-prim: #1B7E5A;
+  --cor-sec:  #0D4D37;
+  --cor-accent: #F59E0B;
+  --bg-cream: #F0FAF5;
+  --bg-cream2: #E6F4EE;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg-cream); font-family: 'Work Sans', system-ui, sans-serif; color: #111; }
+
+h1,h2,h3,.font-anton { font-family: 'Anton','Impact',sans-serif; letter-spacing: .01em; }
+
+.btn-cta {
+  display: block; width: 100%; max-width: 440px; margin: 0 auto;
+  background: var(--cor-accent); color: #111; font-family: 'Anton','Impact',sans-serif;
+  font-size: 1.25rem; letter-spacing: .08em; text-align: center; text-transform: uppercase;
+  padding: 1.1rem 2rem; border-radius: 999px; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,0,0,.18); transition: opacity .15s, transform .1s;
+  text-decoration: none;
+}
+.btn-cta:hover { opacity: .92; transform: scale(1.01); }
+.btn-cta:active { opacity: .85; transform: scale(.99); }
+
+.tema-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); padding: 1.5rem; }
+.tema-num  { font-family: 'Anton','Impact',sans-serif; font-size: .7rem; letter-spacing: .12em; color: var(--cor-prim); text-transform: uppercase; }
+
+.bg-cream2 { background: var(--bg-cream2); }
